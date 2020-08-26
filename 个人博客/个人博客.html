@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/date.js"></script>
+		
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+				-webkit-user-select: none;
+			}
+		
+			html {
+				background-image: url(img/win.jpg);
+				background-size: cover;
+				background-repeat: no-repeat;
+		
+			}
+		
+			body {
+				height: 677.78px;
+			}
+		
+			li {
+				list-style: none;
+				border: none;
+			}
+		</style>
+
+		<style id="daliy">
+			#Daliy-information {
+				position: absolute;
+				left: 5%;
+				top: 15%;
+				width: 20%;
+				height: 55%;
+				background-color: rgba(118, 118, 118, 0.6);
+				box-shadow: 2px 2px 10px 0px #000000;
+			}
+
+			#time-information {
+				width: 100%;
+				height: 25%;
+				border-bottom: 2px solid #0077AA;
+
+			}
+
+			#time {
+				float: left;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 40%;
+				height: 100%;
+				color: white;
+				font-size: 30px;
+				opacity: 0.8;
+			}
+
+			#time #split {
+				transform: translateY(-4px);
+			}
+
+
+			#date {
+				float: right;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				width: 60%;
+				height: 100%;
+				color: #ffffff;
+				font-size: 18px;
+				opacity: 0.8;
+			}
+		</style>
+		<style id="task-css">
+			#task-box {
+
+				position: absolute;
+				top: 15%;
+				right: 5%;
+				width: 60%;
+				height: 70%;
+				background-color: rgba(118, 118, 118, 0.6);
+				box-shadow: 2px 2px 10px 0px #000000;
+			}
+
+			#task-box #banner {
+				width: 100%;
+				height: 9%;
+				background-color: #0077AA;
+				color: white;
+				font-size: 20px;
+				text-align: center;
+				opacity: 0.8;
+				line-height: 35px;
+
+
+			}
+
+			#task-content {
+				height: 91%;
+				width: 100%;
+			}
+
+			#task-box #sildbar {
+				float: left;
+				height: 100%;
+				width: 15%;
+				border-right: 2px solid rgba(255, 255, 255, 0.4);
+
+			}
+
+			#task-box #sildbar ul {
+				width: 100%;
+				height: 80%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			#task-box #sildbar ul li {
+				flex-grow: 1;
+				color: white;
+				font-size: 18px;
+				text-align: center;
+				line-height: 50px;
+			}
+
+			#task-box #sildbar ul li:hover {
+				background-color: gray;
+				cursor: pointer;
+
+			}
+
+
+			#task-box #tasks-list-box {
+				float: right;
+				width: 80%;
+				height: 100%;
+				position: relative;
+			}
+
+			#task-box #tasks-list-box .task-list {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0%;
+				right: 0%;
+
+			}
+
+			#task-box #tasks-list-box .task-list .task-status {
+				height: 10%;
+				width: 100%;
+
+				position: relative;
+			}
+
+			#task-box #tasks-list-box .task-list .task-status .new-task {
+				position: absolute;
+				right: 10px;
+				top: 5px;
+			}
+
+			#task-box #tasks-list-box .task-list .task-status .new-task button {
+				width: 90px;
+				height: 30px;
+
+			}
+
+			#task-box #tasks-list-box .task-list .list {
+
+				width: 100%;
+				height: 90%;
+
+				overflow: auto;
+			}
+
+			#task-box #tasks-list-box .task-list .list .task {
+				display: block;
+				height: 10%;
+				width: 90%;
+
+				line-height: 40px;
+				/*background-color:rgba(255 , 255 , 255, 0.6);*/
+			}
+
+			#task-box #tasks-list-box .task-list .list .task .task-text {
+				border: none;
+				outline: none;
+				width: 100%;
+				height: 85%;
+				-webkit-appearance: none;
+				background: none;
+				font-size: 16px;
+				border-bottom: 1.5px solid #e3e3e3;
+			}
+		</style>
+
+
+
+
+	</head>
+	<body>
+		<header>
+			<div id="banner">
+
+			</div>
+		</header>
+		<section>
+			<!--显示日期 ， 时间 ， 天气-->
+			<div id="Daliy-information">
+				<section id="time-information">
+					<div id="date">
+						<span id="year-month-date"></span>
+						<span id="today"></span>
+					</div>
+					<div id="time">
+						<span id="hours"></span>
+						<span id="split">&nbsp;:&nbsp;</span>
+						<span id="minutes"></span>
+					</div>
+				</section>
+
+				<section id="weather-information">
+					<div id="weather"></div>
+					<div id="temperatrue"></div>
+				</section>
+			</div>
+
+			<div id="task-box">
+				<div id="banner">任务列表</div>
+				<section id="task-content">
+					<div id="sildbar">
+						<ul>
+							<li class="sildbar-btn">今日完成</li>
+							<li class="sildbar-btn">今日任务</li>
+							<li class="sildbar-btn">特别任务</li>
+							<li class="sildbar-btn">年度任务</li>
+							<li class="sildbar-btn">月度任务</li>
+							<li class="sildbar-btn">周度任务</li>
+						</ul>
+					</div>
+					<div id="tasks-list-box">
+
+						<div class="task-list">
+							<div class="task-status">
+								<span class="progress"></span>
+								<span class="new-task">
+									<button class="btn">新建任务</button>
+								</span>
+							</div>
+							<ul class="list"></ul>
+						</div>
+
+						<div class="task-list">
+							<div class="task-status">
+								<span class="progress"></span>
+								<span class="new-task">
+									<button class="btn">新建任务</button>
+								</span>
+							</div>
+							<ul class="list"></ul>
+						</div>
+
+						<div class="task-list">
+							<div class="task-status">
+								<span class="progress"></span>
+								<span class="new-task">
+									<button class="btn">新建任务</button>
+								</span>
+							</div>
+							<ul class="list"></ul>
+						</div>
+
+						<div class="task-list">
+							<div class="task-status">
+								<span class="progress"></span>
+								<span class="new-task">
+									<button class="btn">新建任务</button>
+								</span>
+							</div>
+							<ul class="list"></ul>
+						</div>
+
+						<div class="task-list">
+							<div class="task-status">
+								<span class="progress"></span>
+								<span class="new-task">
+									<button class="btn">新建任务</button>
+								</span>
+							</div>
+							<ul class="list"></ul>
+						</div>
+
+						<div class="task-list">
+							<div class="task-status">
+								<span class="progress"></span>
+								<span class="new-task">
+									<button class="btn">新建任务</button>
+								</span>
+							</div>
+							<ul class="list"></ul>
+						</div>
+
+
+					</div>
+				</section>
+			</div>
+		</section>
+		<footer></footer>
+	</body>
+	
+	<script>
+	
+			var osild = document.getElementsByClassName("sildbar-btn");
+			var otask_list = document.getElementsByClassName("task-list");
+			
+			for (var i = 0; i < osild.length; i++) {
+				if (i == 0) {
+					otask_list[i].style.display = "block";
+				} else {
+					otask_list[i].style.display = "none";
+				}
+			}
+			
+			
+			for (var i = 0; i < osild.length; i++) {
+				osild[i].index = i;
+				osild[i].onclick = function() {
+					
+					otask_list[this.index].style.display = "block";
+					for (var j = 0; j < osild.length; j++) {
+						if (j != this.index) {
+							otask_list[j].style.display = "none";
+						}
+					}
+				}
+			}
+		
+	
+		
+	</script>
+	
+	<script>
+		
+	</script>
+</html>
