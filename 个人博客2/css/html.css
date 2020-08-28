@@ -1,0 +1,21 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	-webkit-user-select: none;
+}
+
+html {
+	background-image: url("../img/win.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+body {
+	height: 677.78px;
+	
+}
+
+li {
+	list-style: none;
+	border: none;
+}
